@@ -1,21 +1,21 @@
-Trestle.resource(:dificuldades) do
+Trestle.resource(:alternativas) do
   menu do
-   group "Nutrição do sistema", priority: :first do
-    item :dificuldades, icon: "fa fa-star"   
-   end
+    group "Nutrição do sistema", priority: :first do
+      item :alternativas, icon: "fa fa-sharp fa-solid fa-bookmark"
+    end
   end
 
   # Customize the table columns shown on the index view.
   #
    table do
-     column :nivel
-     column :pontuacao
+     column :descricao_resposta
+     column :correto
      actions
    end
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |dificuldade|
+  # form do |alternativa|
   #   text_field :name
   #
   #   row do
@@ -32,6 +32,6 @@ Trestle.resource(:dificuldades) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:dificuldade).permit(:name, ...)
+  #   params.require(:alternativa).permit(:name, ...)
   # end
 end
