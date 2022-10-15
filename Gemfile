@@ -32,6 +32,7 @@ gem "jbuilder"
 gem 'trestle'
 gem 'trestle-auth'
 gem 'sassc-rails'
+gem 'trestle-tinymce'
 
 
 # Use Redis adapter to run Action Cable in production
