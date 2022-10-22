@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_15_205123) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_135040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_205123) do
     t.integer "pontuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questao_alternativas", force: :cascade do |t|
+    t.bigint "questao_id", null: false
+    t.bigint "alternativa_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alternativa_id"], name: "index_questao_alternativas_on_alternativa_id"
+    t.index ["questao_id"], name: "index_questao_alternativas_on_questao_id"
   end
 
   create_table "questoes", force: :cascade do |t|
@@ -52,5 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_205123) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "questao_alternativas", "alternativas"
+  add_foreign_key "questao_alternativas", "questoes", column: "questao_id"
   add_foreign_key "questoes", "dificuldades"
 end
