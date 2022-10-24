@@ -7,26 +7,31 @@ Trestle.resource(:questaos) do
 
   # Customize the table columns shown on the index view.
   #
-  # table do
-  #   column :name
-  #   column :created_at, align: :center
-  #   actions
-  # end
+  table do
+    column :descricao
+    column :created_at, align: :center
+    actions
+  end
 
   # Customize the form fields shown on the new/edit views.
   #
   form do |questao|
-    editor :descricao, label: "Descriçao da questão"
+    text_field :descricao, label: "Enunciado da questão"
+
   
     row do
       dificuldade = Dificuldade.all.map {|dificuldade| [dificuldade.nivel, dificuldade.id] }
-      alternativa = Alternativa.all.map {|alternativa| [alternativa.descricao_resposta, alternativa.id] }
       col(sm: 6) { select :dificuldade_id, dificuldade, label: "Selecione a dificuldade" }
-      col(sm: 6) { select :alternativa_correta_id, alternativa }
     end
 
-    row do 
-      col(sm: 12) { collection_select :alternativas_ids, Alternativa.all, :id, :descricao_resposta, {:prompt => "Selecione a alternativa"}, {:multiple => true}}
+    row do
+      if !questao.alternativas.empty?
+        table questao.alternativas, admin: "/alternativas" do 
+          column  :descricao_resposta
+          column  :correto
+          actions
+        end
+      end
     end
   end
 
