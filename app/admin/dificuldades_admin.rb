@@ -1,10 +1,4 @@
 Trestle.resource(:dificuldades) do
-  menu do
-   group "Nutrição do sistema", priority: :first do
-    item :dificuldades, icon: "fa fa-star"   
-   end
-  end
-
   # Customize the table columns shown on the index view.
   #
    table do

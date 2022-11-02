@@ -3,5 +3,5 @@ class Questao < ApplicationRecord
   belongs_to :dificuldade
 
   has_many  :questao_alternativas
-  has_many  :alternativas, through: :questao_alternativas
+  has_many  :alternativas, through: :questao_alternativas, dependent: :delete_all
 end
