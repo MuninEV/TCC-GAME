@@ -1,17 +1,15 @@
 Trestle.resource(:alternativas) do
-  # Customize the table columns shown on the index view.
-  #
+
+  remove_action :update
+
    table do
-     column :descricao_resposta
+     column :descricao
      column :correto
-     actions
    end
 
-  # Customize the form fields shown on the new/edit views.
-  #
   form do |alternativa|
-   text_field :descricao_resposta
-   check_box :correto
+   text_field :descricao,  label: "Descrição"
+   check_box :correto, label: "Resposta correta?"
    hidden_field :questao_ids, value: params[:questao_id]
   end
 
@@ -26,18 +24,18 @@ Trestle.resource(:alternativas) do
       QuestaoAlternativa.create(questao_id: questao.id, alternativa_id: @alternativa.id)
 
 
-      flash[:message] = flash_message("create.success", title: "Success!", message: "Alternativa associada com sucesso")
+      flash[:message] = flash_message("create.success", title: "Success!", message: "The %{lowercase_model_name} was successfully created.")
 
 
       if questao.alternativas.count == 4
         return redirect_to new_alternativas_admin_path(questao_id: questao.id)
       end
 
-      redirect_to new_alternativas_admin_path(questao_id: questao.id)
+      return redirect_to new_alternativas_admin_path(questao_id: questao.id)
 
-     else
-      redirect_to questions_admin_path(question.id)
      end
+
+     redirect_to questions_admin_path(questao.id)
     end
 
     def posso_criar_alternativa?
@@ -53,7 +51,7 @@ Trestle.resource(:alternativas) do
     end
 
     def alternativas_params
-      params.require(:alternativa).permit(:descricao_resposta, :correto, :questao_ids)
+      params.require(:alternativa).permit(:descricao, :correto, :questao_ids)
     end
   end
 end

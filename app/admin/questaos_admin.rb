@@ -1,22 +1,18 @@
 Trestle.resource(:questaos) do
   menu do
     group "Nutrição do sistema", priority: :first do
-      item :questaos, icon: "fa fa-question"
+      item :questaos, icon: "fa fa-question", label: "Questões"
     end
   end
-
-  # Customize the table columns shown on the index view.
-  #
+  
   table do
-    column :descricao
+    column :enunciado
     column :dificuldade, -> (questao) { questao.dificuldade.nivel }, align: :center
     actions
   end
 
-  # Customize the form fields shown on the new/edit views.
-  #
   form class: "form-group" do |questao|
-    text_field :descricao, label: "Enunciado da questão"
+    text_field :enunciado, label: "Enunciado"
     row do
       dificuldade = Dificuldade.all.map {|dificuldade| [dificuldade.nivel, dificuldade.id] }
       col(sm: 12) { select :dificuldade_id, dificuldade, label: "Selecione a dificuldade" }
@@ -28,16 +24,17 @@ Trestle.resource(:questaos) do
       row do
         col(lg: 12) do 
           table questao.alternativas, admin: :alternativas, class: "table" do 
-            column :descricao_resposta
-            column :correto
+            column :descricao
+            column :correto, align: :center
 
-            actions
+            actions do |toolbar, instance, _|
+              toolbar.delete
+            end
           end 
 
           if questao.alternativas.count < 4
             concat admin_link_to("Adicionar alternativas", admin: :alternativas, action: :new, params: {questao_id: questao.id}, class: "btn btn-primary mt-2")
           end
-
         end
       end
     end
@@ -55,7 +52,7 @@ Trestle.resource(:questaos) do
     private
 
     def questaoes_params
-      params.require(:questao).permit(:descricao, :dificuldade_id)
+      params.require(:questao).permit(:enunciado, :dificuldade_id)
     end
   end
 end
