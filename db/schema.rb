@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_225948) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_05_213956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "alternativas", force: :cascade do |t|
-    t.string "descricao_resposta"
+    t.string "descricao"
     t.boolean "correto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_225948) do
   end
 
   create_table "questoes", force: :cascade do |t|
-    t.string "descricao"
+    t.string "enunciado"
     t.bigint "dificuldade_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
