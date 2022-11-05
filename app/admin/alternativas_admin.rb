@@ -1,5 +1,7 @@
 Trestle.resource(:alternativas) do
-  
+
+  remove_action :update
+
    table do
      column :descricao
      column :correto
