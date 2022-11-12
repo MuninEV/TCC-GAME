@@ -1,0 +1,20 @@
+.larg-button{
+  margin-left: 31%;
+  margin-right: 31%;
+}
+.ajusteContainer{
+  margin-top: 10%;
+}
+.ajusteBotao:hover{
+  background-color:  #b0afaf;    
+  transition: 0.3s;
+  opacity: 1;
+}
+.ajusteBotao{
+background:  #D9D9D9;
+border-radius: 7px;
+box-shadow: 0px 1px 2px ;
+}
+.ajusteNav{
+  text-align: right 15px;
+}
