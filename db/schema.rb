@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_213956) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_14_215013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_213956) do
     t.boolean "correto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "explicacao"
   end
 
   create_table "dificuldades", force: :cascade do |t|
@@ -45,6 +46,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_213956) do
     t.index ["dificuldade_id"], name: "index_questoes_on_dificuldade_id"
   end
 
+  create_table "tentativa_questaos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "questao_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questao_id"], name: "index_tentativa_questaos_on_questao_id"
+    t.index ["user_id"], name: "index_tentativa_questaos_on_user_id"
+  end
+
+  create_table "tentativas", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tentativas_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -62,4 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_213956) do
   add_foreign_key "questao_alternativas", "alternativas"
   add_foreign_key "questao_alternativas", "questoes", column: "questao_id"
   add_foreign_key "questoes", "dificuldades"
+  add_foreign_key "tentativa_questaos", "questoes", column: "questao_id"
+  add_foreign_key "tentativa_questaos", "users"
+  add_foreign_key "tentativas", "users"
 end

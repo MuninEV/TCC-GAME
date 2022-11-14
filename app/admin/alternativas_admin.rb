@@ -9,6 +9,7 @@ Trestle.resource(:alternativas) do
 
   form do |alternativa|
    text_field :descricao,  label: "Descrição"
+   text_field :explicacao, label: "Explicação", placeholder: "Escreva a explicação do porque a alternativa é correta"
    check_box :correto, label: "Resposta correta?"
    hidden_field :questao_ids, value: params[:questao_id]
   end
@@ -51,7 +52,7 @@ Trestle.resource(:alternativas) do
     end
 
     def alternativas_params
-      params.require(:alternativa).permit(:descricao, :correto, :questao_ids)
+      params.require(:alternativa).permit(:descricao, :correto, :questao_ids, :explicacao)
     end
   end
 end
