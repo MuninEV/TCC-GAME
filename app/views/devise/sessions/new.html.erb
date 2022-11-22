@@ -1,0 +1,31 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Faça seu login para jogar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-action="modal#fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= render "layouts/errors"%>
+            <div class="form-group">
+              <%= f.label :nome_usuario %><br />
+              <%= f.text_field :nome_usuario, class: "form-control", id: "nome_usuario" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
+
+            <div class="flex">
+              <%= f.submit "Entrar",  class: "btn btn-primary mt-2" %>
+              <%= link_to "Cadastrar",new_user_registration_url, class: "btn btn-primary mt-2"%>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
