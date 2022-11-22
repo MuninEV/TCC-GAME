@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/pontuacao', to: "pontuacao#index"
   get '/tentativa', to: "tentativa#index"
   get '/instrucoes', to: "instrucoes#index"
   root "home#index"
