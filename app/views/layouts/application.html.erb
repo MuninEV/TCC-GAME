@@ -11,42 +11,34 @@
     <%= javascript_include_tag "application", "data-track-turbo": "true", defer: true %>
   </head>
 
-  <body>
-<div class="row">
-  <div class="container-fluid">
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" style="text-align: right 15px;"  href="#">Home</i></a> 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      </div>
-      <div class="row">
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">      
-          <a class="nav-link active" href="#">Som</a>
-           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
-          <%if current_user %>
-            <a class="nav-link active"> <%= current_user.nome_usuario %> </a>
-          <%end%>
+  <body class="bg-ligth">
+  <div class="container">
+    <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="text-align: right 15px;"  href="#">Home</i></a> 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+        <div class="row">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">      
+            <div class="dropdown">
+              <%if current_user %>  
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Opções
+                </button>
+                <ul class="dropdown-menu">
+                <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
+                </ul>
+              </div>
+              <%end%>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
   </div>
-</div>
-
-  <div class="container">
-    <% if notice %>
-      <p class="alert alert-success mt-2" data-controller="alert"><%= notice %></p>
-    <% end %>
-      <% if alert %>
-        <p class="alert alert-danger mt-2" data-controller="alert"><%= alert %></p>
-      <% end %>
-      <% if !user_signed_in? && action_name == "index" %>
-        <%= render "layouts/modal_sign" %>
-      <%end%>
     <%= yield %>
   </div>
   </body>
