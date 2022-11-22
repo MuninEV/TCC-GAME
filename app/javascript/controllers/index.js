@@ -7,6 +7,9 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 import Modal from "./modal_controller"
 import Alert from "./alert_controller"
+import Tentativa from "./tentativa_controller"
 application.register("hello", HelloController)
 application.register("modal", Modal)
 application.register("alert", Alert)
+application.register("tentativa", Tentativa)
+
