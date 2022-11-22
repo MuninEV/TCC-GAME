@@ -6,4 +6,6 @@ class User < ApplicationRecord
          authentication_keys: [:nome_usuario]
   enum :tipo_usuario, {administrador: 0, jogador: 1}
   validates :email, :uniqueness => {:allow_blank => true}
+
+  has_many :tentativas
 end

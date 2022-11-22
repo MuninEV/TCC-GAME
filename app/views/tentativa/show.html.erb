@@ -1,0 +1,12 @@
+<div class="d-flex flex-column justify-content-center">
+    <% @questoes.shuffle.each do |questao|%>
+        <div class="col-md-12 bg-light mb-3 mt-5">
+            <span> <%= questao.enunciado %>
+        <% questao.alternativas.shuffle.each do |alternativa|%>
+            <ul> 
+                <li> <%= alternativa.descricao %> </li>
+            </ul>
+        <%end%>
+        </div>
+    <%end%>
+</div>
