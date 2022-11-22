@@ -13,7 +13,7 @@
 
   <body>
 <div class="row">
-<div class="container-fluid">
+  <div class="container-fluid">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" style="text-align: right 15px;"  href="#">Home</i></a> 
@@ -25,17 +25,29 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">      
           <a class="nav-link active" href="#">Som</a>
+           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+          <%if current_user %>
+            <a class="nav-link active"> <%= current_user.nome_usuario %> </a>
+          <%end%>
         </div>
       </div>
     </div>
   </nav>
-</div>
+  </div>
 </div>
 
   <div class="container">
-  
+    <% if notice %>
+      <p class="alert alert-success mt-2" data-controller="alert"><%= notice %></p>
+    <% end %>
+      <% if alert %>
+        <p class="alert alert-danger mt-2" data-controller="alert"><%= alert %></p>
+      <% end %>
+      <% if !user_signed_in? && action_name == "index" %>
+        <%= render "layouts/modal_sign" %>
+      <%end%>
     <%= yield %>
   </div>
-    
   </body>
 </html>

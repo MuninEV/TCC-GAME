@@ -1,0 +1,15 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <%= f.label :nome_usuario %><br />
+    <%= f.text_field :nome_usuario, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Entrar", class: "btn btn-primary mt-2" %>
+  </div>
+<% end %>
