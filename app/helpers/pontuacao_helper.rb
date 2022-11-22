@@ -1,0 +1,2 @@
+module PontuacaoHelper
+end
