@@ -4,4 +4,6 @@ class Questao < ApplicationRecord
 
   has_many  :questao_alternativas
   has_many  :alternativas, through: :questao_alternativas, dependent: :delete_all
+  
+  validates :enunciado, presence: true
 end
