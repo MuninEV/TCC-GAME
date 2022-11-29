@@ -1,39 +1,17 @@
-<div class="card">
-  <div class="card-body">
-    <div class="titulo">
-       <h2> O lixo eletronico é bom para o meio ambiente? <h2>
-        </div>
-        
-<div class="cardAlt">
-        <div class="form-check m-2">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label " for="flexRadioDefault1">
-        Claro
-    </label>
-    </div>
-</div>
-<div class="cardAlt">
-        <div class="form-check m-2">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label" for="flexRadioDefault1">
-        sim
-    </label>
-    </div>
-</div>
-<div class="cardAlt">
-        <div class="form-check m-2">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label " for="flexRadioDefault1">
-        Obvio
-    </label>
-    </div>
-</div>
-<div class="cardAlt">
-        <div class="form-check m-2">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label" for="flexRadioDefault1">
-        Não
-    </label>
-    </div>
-</div>
-</div>
+<%= form_with(url: finalizar_tentativa_url, method: :post) do |tentativa_form| %>
+	<%@questoes.shuffle.each do |questao| %>
+		<div class="card mb-2">
+			<%= tentativa_form.fields_for(questao, index: questao.id) do |questao_form|%>
+				<h3> <%=questao.enunciado%> </h3>
+				<% questao.alternativas.shuffle.each do |alternativa|%>
+					<div class="form-check">
+						<%= radio_button_tag("tentativa[#{questao.id}]", alternativa.id, false, class: "form-check-input") %>
+						<%= label(:alternativa, alternativa.descricao, class: "form-check-label")%>
+					</div>
+				<%end%>
+			<%end%>
+		</div>
+	<%end%>
+
+	<%= tentativa_form.button "finalizar", class: "btn btn-primary mt-2" %>
+<%end%>
