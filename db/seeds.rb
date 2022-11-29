@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-500.times do 
-    alternativa = Alternativa.create(descricao_resposta: Faker::Lorem.word, correto:false)
-    puts alternativa
-end
+Dificuldade.create(nivel:"Facíl", pontuacao:5)
+Dificuldade.create(nivel:"Médio", pontuacao:10)
+Dificuldade.create(nivel:"Difícil", pontuacao:15)
+
