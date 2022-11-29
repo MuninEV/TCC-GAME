@@ -34,7 +34,7 @@ class TentativaController < ApplicationController
     
     
     questionario.each do |q|
-      ##implementar a lógica aqui de salvar os dados
+      ##implementar a lógica aqui de salvar os
     end
   end
 end

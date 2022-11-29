@@ -1,5 +1,6 @@
 <%= form_with(url: finalizar_tentativa_url, method: :post) do |tentativa_form| %>
 	<%@questoes.shuffle.each do |questao| %>
+		<%= tentativa_form.hidden_field :tentativa_id, value: @tentativa.id %>
 		<div class="card mb-2">
 			<%= tentativa_form.fields_for(questao, index: questao.id) do |questao_form|%>
 				<h3> <%=questao.enunciado%> </h3>
