@@ -4,8 +4,9 @@ import { FetchRequest } from "@rails/request.js"
 
 
 export default class extends Controller {
+
   connect() {
-    console.log('caiu aqui')
+    console.log('aqui')
   }
 
  async criar(event){
@@ -24,4 +25,5 @@ export default class extends Controller {
         Turbo.visit(`/tentativa/${tentativa.data.id}`)
     }
   }
+
 }

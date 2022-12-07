@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/instrucoes', to: "instrucoes#index"
   root "home#index"
   post "/tentativa", to: "tentativa#criar_tentativa"
+  post "/finalizar_tentativa", to: "tentativa#finalizar_tentativa"
   
   devise_scope :user do
     # Redirests signing out users back to sign-in
