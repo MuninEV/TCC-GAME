@@ -15,17 +15,12 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">Home</i></a> 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>           
-           <div class="container-fluid">
-            <a class="navbar-brand" href="/admin">Admin</i></a> 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            </div>
-            <div class="row">
+            <a class="navbar-brand" href="#">E-lixo</i></a> 
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>           
+          </div>
+          <div class="row">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">      
                 <div class="dropdown">
@@ -34,6 +29,7 @@
                       Opções
                     </button>
                     <ul class="dropdown-menu">
+                    <%= link_to "Admin", "/admin" , class: "dropdown-item"%>
                     <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
                     </ul>
                   </div>
