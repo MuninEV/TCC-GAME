@@ -1,10 +1,16 @@
 class TentativaController < ApplicationController
   before_action :usuario_logado?, only: [:index]
+
   def index
   end
 
   def show
     @tentativa = current_user.tentativas.find(params[:id])
+
+    if @tentativa.finalizado?
+      redirect_to tentativa_finalizada_url
+    end
+
     @questoes = Questao.all.includes(:alternativas).sample(10)
     respond_to do |format|
       format.html
@@ -32,9 +38,26 @@ class TentativaController < ApplicationController
       index = index+1
     end 
     
-    
     questionario.each do |q|
-      ##implementar a lógica aqui de salvar os
+      alternativa = Questao.find(q[:questao_id]).alternativas.find(q[:alternativa_id])
+
+      if alternativa.correto?
+        TentativaQuestao.create!(questao_id: q[:questao_id], tentativa_id: params[:tentativa_id])
+      end
+      
     end
+
+    @tentativa = Tentativa.find(params[:tentativa_id])
+
+    @tentativa.update_attribute :status, :finalizado
+
+    @soma =  @tentativa.questaos.map(&:dificuldade).map(&:pontuacao).sum
+
+
+    redirect_to pontuacao_url(valor: @soma)
+  end
+
+
+  def tentativa_finalizada  
   end
 end

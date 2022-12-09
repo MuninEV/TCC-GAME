@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_214919) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_115044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,14 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_214919) do
     t.integer "pontuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pontuacaos", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.float "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_pontuacaos_on_user_id"
   end
 
   create_table "questao_alternativas", force: :cascade do |t|
@@ -54,26 +46,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_214919) do
     t.index ["dificuldade_id"], name: "index_questoes_on_dificuldade_id"
   end
 
-  create_table "tabela_pontuacaos", force: :cascade do |t|
-    t.string "jogador"
-    t.string "pontuacao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tentativa_questaos", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "questao_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tentativa_id"
     t.index ["questao_id"], name: "index_tentativa_questaos_on_questao_id"
-    t.index ["user_id"], name: "index_tentativa_questaos_on_user_id"
   end
 
   create_table "tentativas", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status"
     t.index ["user_id"], name: "index_tentativas_on_user_id"
   end
 
@@ -90,11 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_214919) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "pontuacaos", "users"
   add_foreign_key "questao_alternativas", "alternativas"
   add_foreign_key "questao_alternativas", "questoes", column: "questao_id"
   add_foreign_key "questoes", "dificuldades"
   add_foreign_key "tentativa_questaos", "questoes", column: "questao_id"
-  add_foreign_key "tentativa_questaos", "users"
   add_foreign_key "tentativas", "users"
 end

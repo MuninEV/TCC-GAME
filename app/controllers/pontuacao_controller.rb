@@ -1,4 +1,5 @@
 class PontuacaoController < ApplicationController
-  def index
+  def pontuacao
+    @valor = params[:valor].freeze
   end
 end

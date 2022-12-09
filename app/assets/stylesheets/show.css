@@ -1,19 +1,14 @@
 .titulo{
   text-align: center;
   font-size: 30px;
-  margin-bottom: 30px;
 }
 .alternativas{
   font-size: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-
+  background: red;
 }
 .card{
   background-color: #D9D9D9;
-  border-radius: 20px;
-  padding: 10px;
-  
+  border-radius: 20px;  
 }
 .cardAlt:hover{
   background-color: #c8c8c8;
@@ -21,8 +16,12 @@
 }
 .cardAlt{
   background-color: #ababab;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  margin-top: 10px;
-  border-radius: 15px;
+}
+
+.cardRelativo{
+  background: #c8c8c8;
+}
+
+.bg-secondary:hover{
+  opacity: 90%;
 }
