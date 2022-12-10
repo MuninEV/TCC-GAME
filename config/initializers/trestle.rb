@@ -33,7 +33,7 @@ Trestle.configure do |config|
   #
   # Set the path at which to mount the Trestle admin. Defaults to /admin.
   #
-  # config.path = "/admin"
+  config.path = "/apollo"
 
   # Toggle whether Trestle should automatically mount the admin within your
   # Rails application's routes. Defaults to true.
@@ -110,6 +110,12 @@ Trestle.configure do |config|
   #   block.call
   #   Rails.logger.debug("Around action (after)")
   # end
+
+  # config.before_action do |_controller|
+  #   if (!current_user&.adm?) && !user_signed_in? 
+  #     redirect_to "/"
+  #   end
+  # end 
 
   # Specify a custom hook to be injected into the admin.
   #

@@ -1,5 +1,12 @@
 Trestle.resource(:alternativas) do
 
+  before_action do
+    if !current_user&.adm?
+      redirect_to "/"
+    end
+  end
+
+
   remove_action :update
 
    table do

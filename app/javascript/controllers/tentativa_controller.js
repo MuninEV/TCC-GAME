@@ -17,12 +17,15 @@ export default class extends Controller {
 
     //gera a ação de request
     const response = await request.perform()
-    
+    const a = this.element.querySelector(".message_tentativa")
+    const tentativa =  JSON.parse(await response.text)
+
     if(response.ok){
 
+        tentativa.data == null ?  a.innerHTML = tentativa.message :  Turbo.visit(`/tentativa/${tentativa.data.id}`)
         //retorna os dados após a criação da tentiva no backend
-        const tentativa = JSON.parse(await response.text)
-        Turbo.visit(`/tentativa/${tentativa.data.id}`)
+    }else{
+      a.innerHTML = tentativa.message
     }
   }
 

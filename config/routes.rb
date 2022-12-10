@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/tentativa", to: "tentativa#criar_tentativa"
   post "/finalizar_tentativa", to: "tentativa#finalizar_tentativa"
   get "/tentativa_finalizada",to: "tentativa#tentativa_finalizada"
+  get "/revisar", to: "revisao#revisar"
   
   devise_scope :user do
     # Redirests signing out users back to sign-in

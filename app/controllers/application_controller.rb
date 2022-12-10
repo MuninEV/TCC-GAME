@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
     redirect_to users_url if !user_signed_in?
   end
 
+  def retornar_tentativa
+    
+    if current_user&.tentativas&.last&.nil?  
+      redirect_to "/"
+    elsif !current_user&.tentativas&.last&.finalizado?
+      redirect_to "/tentativa/#{current_user&.tentativas&.last&.id}"
+    end
+
+  end
+
   protected
 
   def configure_permitted_parameters

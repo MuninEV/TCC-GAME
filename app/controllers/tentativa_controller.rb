@@ -1,5 +1,6 @@
 class TentativaController < ApplicationController
   before_action :usuario_logado?, only: [:index]
+  before_action :tentativa_maxima, only: [:criar_tentativa]
 
   def index
   end
@@ -19,9 +20,9 @@ class TentativaController < ApplicationController
 
   def criar_tentativa
     @tentativa = Tentativa.new(user_id: current_user.id)
-
+    
     if @tentativa.save
-      render json: {data: @tentativa}
+      render json: {data: @tentativa}, status: 200
     end
   end
 
@@ -51,13 +52,16 @@ class TentativaController < ApplicationController
 
     @tentativa.update_attribute :status, :finalizado
 
-    @soma =  @tentativa.questaos.map(&:dificuldade).map(&:pontuacao).sum
-
-
-    redirect_to pontuacao_url(valor: @soma)
+    redirect_to revisar_url(tentativa_id: @tentativa.id)
   end
 
 
   def tentativa_finalizada  
+  end
+
+  def tentativa_maxima
+    if current_user.tentativas.count >= 3
+      render json: {message: "Você chegou no limite de tentativas!!!"}, :status => 422
+    end
   end
 end

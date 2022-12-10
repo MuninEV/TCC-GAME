@@ -1,4 +1,12 @@
 Trestle.resource(:users, model: User, scope: Auth) do
+
+  before_action do
+    if !current_user&.adm?
+      redirect_to "/"
+    end
+  end
+
+
   menu do
     group :configuration, priority: :last do
       item :users, icon: "fas fa-users"
@@ -6,21 +14,18 @@ Trestle.resource(:users, model: User, scope: Auth) do
   end
 
   table do
-    column :avatar, header: false do |user|
-      avatar_for(user)
-    end
-    column :email, link: true
+    column :nome_usuario, link: true
     actions do |a|
       a.delete unless a.instance == current_user
     end
   end
 
   form do |user|
-    text_field :email
+    text_field :nome_usuario
 
     row do
-      col(sm: 6) { password_field :password }
-      col(sm: 6) { password_field :password_confirmation }
+      col(sm: 6) { password_field :password, label: "Senha" }
+      col(sm: 6) { password_field :password_confirmation, label: "Confirmação da senha" }
     end
   end
 

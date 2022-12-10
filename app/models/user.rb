@@ -8,4 +8,9 @@ class User < ApplicationRecord
   validates :email, :uniqueness => {:allow_blank => true}
 
   has_many :tentativas
+
+
+  def adm?
+    self&.tipo_usuario&.to_sym == :administrador
+  end
 end

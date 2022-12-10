@@ -1,6 +1,14 @@
 Trestle.resource(:dificuldades) do
   # Customize the table columns shown on the index view.
   #
+
+  before_action do
+    if !current_user&.adm?
+      redirect_to "/"
+    end
+  end
+
+
    table do
      column :nivel
      column :pontuacao

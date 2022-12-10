@@ -5,9 +5,8 @@
     Na sequência você poderá optar por voltar para a página inicial ou vizualizar uma revisão</p>
     <hr class="my-4">
     <p class="lead">
-      <%if current_user.tentativas.count < 3 %>
-        <button data-action="tentativa#criar" class="btn btn-primary"> Gerar Tentativa </button>
-      <%end%>
+      <button data-action="tentativa#criar" class="btn btn-primary"> Gerar Tentativa </button>
+      <span class="message_tentativa" role="alert"></span> 
     </p>
   </div>
 </div>
