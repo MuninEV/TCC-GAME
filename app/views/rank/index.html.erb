@@ -8,26 +8,18 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">nome</th>
-          <th scope="col">pontuação</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Pontuação</th>
         </tr>
       </thead>
       <tbody>
+        <%@novos_dados.each_with_index do |value, index| %>
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>100</td>
+          <th scope="row"><%= index+1 %></th>
+          <td> <%= value[:user].nome_usuario %> </td>
+          <td> <%= value[:total] %> </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>50</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>25</td>
-        </tr>
+        <%end%>
       </tbody>
     </table>
   </div>

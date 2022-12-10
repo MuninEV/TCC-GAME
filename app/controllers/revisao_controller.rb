@@ -1,8 +1,6 @@
-class PontuacaoController < ApplicationController
-  def pontuacao
+class RevisaoController < ApplicationController
+  def revisar
     @tentativa = Tentativa.find(params[:tentativa_id])
-    @soma =  @tentativa.questaos.map(&:dificuldade).map(&:pontuacao).sum
-
 
     @array_com_dados = []
 
@@ -16,6 +14,5 @@ class PontuacaoController < ApplicationController
       })
       
     end  
-    @valor = @soma
   end
 end

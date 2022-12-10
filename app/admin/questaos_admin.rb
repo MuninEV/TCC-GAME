@@ -1,4 +1,11 @@
 Trestle.resource(:questaos) do
+
+  before_action do
+    if !current_user&.adm?
+      redirect_to "/"
+    end
+  end
+
   menu do
     group "Nutrição do sistema", priority: :first do
       item :questaos, icon: "fa fa-question", label: "Questões"

@@ -1,4 +1,12 @@
 Trestle.resource(:account, model: User, scope: Auth, singular: true) do
+
+  before_action do
+    if !current_user&.adm?
+      redirect_to "/"
+    end
+  end
+
+
   instance do
     current_user
   end
