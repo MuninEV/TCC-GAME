@@ -5,12 +5,18 @@
     Na sequência você poderá optar por voltar para a página inicial ou vizualizar uma revisão</p>
     <hr class="my-4">
     <p class="lead">
-      <% if current_user&.tentativas&.last&.finalizado? %>
-         <button data-action="tentativa#criar" class="btn btn-primary"> Gerar Tentativa </button>
-         <span class="message_tentativa" role="alert"></span> 
-      <%else%>
+
+      <%if current_user&.tentativas&.empty?%>
+        <button data-action="tentativa#criar" class="btn btn-primary"> Gerar Tentativa </button>
+        <span class="message_tentativa" role="alert"></span>
+      <%elsif !current_user&.tentativas&.last&.finalizado? %>
         <%= link_to "Finalizar ultima tentativa", "/tentativa/#{current_user&.tentativas&.last&.id}", class: "btn btn-primary" %>
+      <%else%>
+        <button data-action="tentativa#criar" class="btn btn-primary"> Gerar Tentativa </button>
+        <span class="message_tentativa" role="alert"></span>
       <%end%>
     </p>
   </div>
 </div>
+
+
