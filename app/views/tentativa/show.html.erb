@@ -8,7 +8,7 @@
 				</div>
 				<% questao.alternativas.shuffle.each do |alternativa|%>
 					<div class="d-flex align-items-center gap-2 bg-secondary p-2 mb-2 rounded-4	">
-						<%= radio_button_tag("tentativa[#{questao.id}]", alternativa.id, false, class: "form-check-input") %>
+						<%= radio_button_tag("tentativa[#{questao.id}]", alternativa.id, false, required: 'required',class: "form-check-input") %>
 						<%= label(:alternativa, alternativa.descricao, class: "form-check-label")%>
 					</div>
 				<%end%>
