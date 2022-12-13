@@ -13,7 +13,14 @@
   align-items: center;
   justify-content: center; 
   font-size: large;
-  
 }
 
+.carousel-item h4{
+  text-align: justify;
+}
 
+@media(max-width: 600px){
+  .carousel-item h4{
+    text-align: center;
+  }
+}

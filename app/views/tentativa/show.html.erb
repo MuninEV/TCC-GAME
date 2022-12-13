@@ -1,13 +1,16 @@
 <%= form_with(url: finalizar_tentativa_url, method: :post) do |tentativa_form| %>
+
+	<h3 class="text-center"> Tentativa: <%= current_user.tentativas.count  %> </h3>
+
 	<%@questoes.shuffle.each do |questao| %>
 		<%= tentativa_form.hidden_field :tentativa_id, value: @tentativa.id %>
-		<div class="card p-3  mb-2 anime-left">
+		<div class="card p-3 bg_card shadow-sm mb-2 anime-left">
 			<%= tentativa_form.fields_for(questao, index: questao.id) do |questao_form|%>
 				<div class="titulo">
 					<h3> <%=questao.enunciado%> </h3>
 				</div>
 				<% questao.alternativas.shuffle.each do |alternativa|%>
-					<div class="d-flex align-items-center gap-2 bg-secondary p-2 mb-2 rounded-4	">
+					<div class="d-flex align-items-center gap-2 bg_alternativa p-2 mb-2 rounded-4	">
 						<%= radio_button_tag("tentativa[#{questao.id}]", alternativa.id, false, required: 'required',class: "form-check-input") %>
 						<%= label(:alternativa, alternativa.descricao, class: "form-check-label")%>
 					</div>

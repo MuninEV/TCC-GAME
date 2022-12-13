@@ -25,3 +25,11 @@
 .bg-secondary:hover{
   opacity: 90%;
 }
+
+.bg_alternativa{
+  background: #B6B6B6;
+}
+
+.bg_card{
+  background: #F9F9F9;
+}
